@@ -24,7 +24,7 @@ const Navbar = () => {
                     <div className="dropdown text-end">
                         <Link to="#" className="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" className="rounded-circle" />
-                            <span>{user.payload.user.Name}</span>
+                            {/* <span>{user.data.user.Name}</span> */}
                         </Link>
                         <ul className="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                             <li><Link className="dropdown-item" to="#">New project...</Link></li>

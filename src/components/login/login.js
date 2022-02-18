@@ -21,8 +21,17 @@ const Login = (props) => {
         HttpService.login('auth', email, password)
             .then((response) => {
                 if(response){
-                    if(response.status===201){
+                    if(response.status===201 && response.data.payload.Role === 1){
                         navigate("/admin-dashboard");
+                    }
+                    else if (response.status===201 && response.data.payload.Role === 2){
+                        navigate("/manager-dashboard");
+                    }
+                    else if (response.status===201 && response.data.payload.Role === 3) {
+                        navigate("/user-dashboard");
+                    }
+                    else {
+                        alert("Please Enter Valid Email or Password");
                     }
                 }
                 else{
