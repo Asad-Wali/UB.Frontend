@@ -94,10 +94,7 @@ class HttpService {
   }
 
   delete(route) {
-    if (!TOKEN) {
-      return;
-    }
-    return axios.delete(API_URL + route, { headers: { Authorization: 'Bearer ' + TOKEN.accessToken } });
+    return axios.delete(API_URL + route );
   }
 
   getCurrentUser() {

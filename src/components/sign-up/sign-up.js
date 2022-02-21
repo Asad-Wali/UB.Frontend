@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import HttpService from "../../shared/http.service";
 import { useNavigate } from "react-router-dom";
@@ -27,13 +27,13 @@ const SignUp = () => {
     }
 
     useEffect(() => {
-        HttpService.getAll()
+        HttpService.getAll('roles')
             .then((response) => {
                 if (response) {
                     if (response.data) {
                         setRoles(response.data)
                     }
-                } 
+                }
             }).catch((err) => {
                 console.log(err);
             });
@@ -43,12 +43,12 @@ const SignUp = () => {
         e.preventDefault();
         HttpService.signup('users', email, password, name, role)
             .then((response) => {
-                if(response){
-                    if(response.status===201){
+                if (response) {
+                    if (response.status === 201) {
                         navigate("/");
                     }
                 }
-                    
+
             }).catch((err) => {
                 console.log(err);
             });
@@ -93,12 +93,12 @@ const SignUp = () => {
                                 />
                             </div>
                             <div className="form-group my-3">
-                            <select className="form-select" aria-label="Default select example">
-                                <option selected
-                                onChange={onChangeRole}
-                                >Select Role</option>
-                                <option value="2">Manager</option>
-                                <option value="3">User</option>
+                                <select className="form-select" aria-label="Default select example" 
+                                onChange={onChangeRole}>
+                                    <option value="" />
+                                    {roles.map(data => {
+                                        return <option key={data.id} value={data.id}>{data.Title}</option>;
+                                    })}
                                 </select>
                             </div>
                             <button type='submit' className='btn btn-theme w-100 my-3 fw-bolder fs-5 rounded-3'>Register</button>
